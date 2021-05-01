@@ -105,7 +105,7 @@ router.delete("", async (req, res) => {
   const { orderId } = req.body;
 
   try {
-    const deleteResult = await orders.deleteOrders(orderId, update);
+    const deleteResult = await orders.deleteOrders(orderId);
     res.json({
       success: true,
       message: deleteResult,
