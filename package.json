@@ -4,6 +4,10 @@
   "description": "task for applore assignment",
   "main": "index.js",
   "scripts": {
+    "prebuild": "run-s clean",
+    "clean": "rimraf ./dist",
+    "react-dev": "parcel app/index.html --port 3001",
+    "build": "parcel build app/index.html --no-source-maps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "pavittarx",
@@ -16,10 +20,18 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "framer-motion": "^4.1.11",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.6.6"
+    "mongodb": "^3.6.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "scss": "^0.2.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "parcel-bundler": "^1.12.5",
+    "rimraf": "^3.0.2",
+    "sass": "^1.32.12",
+    "semantic-ui-react": "^2.0.3"
   }
 }
