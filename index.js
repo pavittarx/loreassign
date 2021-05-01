@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(compression());
 
 app.use("/api", userRouter);
-app.use("/api/:user/orders", ordersRouter);
+app.use("/api/orders", ordersRouter);
 
 app.get("/", (req, res) => {
   res.send({
