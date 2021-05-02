@@ -32,7 +32,7 @@ const createUser = async (username, email, password) => {
 
   const result = await usersCollection.insertOne({ username, email, passHash });
 
-  if (result.insertedCount === 1) return "User successfully created";
+  if (result.insertedCount === 1) return "Your account has been succcessfully created. Please Login.";
   else
     return (
       "An unidentified error occured while creating user " + username + "."

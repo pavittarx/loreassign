@@ -1,0 +1,19 @@
+.registration-form, .login-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+
+  .input{
+    margin: 10px;
+    width: 300px;
+  }
+
+  .button{
+    margin: 10px;
+  }
+
+  .text{
+    margin: 15px;
+  }
+}

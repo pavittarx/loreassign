@@ -9,7 +9,7 @@ router.post("/signup", async (req, res) => {
 
     res.json({
       success: true,
-      result: createUserResult,
+      message: createUserResult,
     });
   } catch (e) {
     res.status(400);

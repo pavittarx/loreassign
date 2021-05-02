@@ -21,10 +21,10 @@ const authorize = async (usernameOrEmail, password) => {
 
   console.log(password, user);
 
-  if(!user) throw new Error(`The user with username: ${username} does not exist.`);
+  if(!user) throw new Error(`The user with username: "${usernameOrEmail}" does not exist.`);
 
   if (!(await bcrypt.compare(password, user.passHash))) {
-    throw new Error("Incorrect username or password: ${username}");
+    throw new Error(`Incorrect username or password.`);
   }
 
   const token = await jwt.sign(
