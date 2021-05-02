@@ -27,6 +27,7 @@ router.all("/", async (req, res, next) => {
       message: error.message,
     });
     res.end();
+    return;
   }
 
   next();

@@ -18,6 +18,7 @@ const Order = ({ id, name, quantity, date, status }) => {
   const remove = async () => {
     const response = await deleteOrder(id);
     if(response.error) setError(error);
+    setTimeout(() => location.reload(), 2000);
   }
 
   return (
