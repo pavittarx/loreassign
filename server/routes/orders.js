@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const {
-  auth: { authenticate },
-  orders,
-} = require("./../libs/index");
+const { auth, orders } = require("./../libs/index");
 
+// Middleware to authenticate user before accessing orders data
 router.all("/", async (req, res, next) => {
-  const token = req.headers.cookie && req.headers.cookie.split("=")[1];
+  const { authenticate } = auth;
+  const token =
+    req.headers.authorization && req.headers.authorization.split(" ")[1];
 
   if (!token) {
     res.status(400);
@@ -64,10 +64,9 @@ router.get("/", async (req, res) => {
 
   try {
     const ordersList = await orders.getOrders(username);
-    console.log(ordersList);
     res.json({
       success: true,
-      orders: ordersList,
+      data: ordersList,
     });
   } catch (error) {
     res.status(400);

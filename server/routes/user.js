@@ -33,6 +33,9 @@ router.post("/login", async (req, res) => {
       })
       .json({
         success: true,
+        data: {
+          token
+        },
         message: "You have successfully logged in.",
       });
   } catch (err) {
@@ -46,7 +49,7 @@ router.post("/login", async (req, res) => {
 
 router.get("/auth", async (req, res) => {
   const {authenticate} = auth;
-  const token = req.headers.cookie && req.headers.cookie.split("=")[1];
+  const token = req.headers.authorization && req.headers.authorization.split(" ")[1];
 
   if (!token) {
     res.status(400);
