@@ -45,7 +45,7 @@ export const authenticate = async () => {
     if (response.success) return true;
   } catch (error) {
     const { response } = error;
-    console.log(response);
+    console.log(error, response);
     if (response.error) return false;
   }
 };

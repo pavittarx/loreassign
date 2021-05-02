@@ -21,10 +21,11 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  const {authorize} = auth;
   const { username: usernameOrEmail, password } = req.body;
 
   try {
-    const token = await auth.authorize(usernameOrEmail, password);
+    const token = await authorize(usernameOrEmail, password);
 
     res
       .cookie("token", token, {
@@ -44,6 +45,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/auth", async (req, res) => {
+  const {authenticate} = auth;
   const token = req.headers.cookie && req.headers.cookie.split("=")[1];
 
   if (!token) {
@@ -57,7 +59,7 @@ router.get("/auth", async (req, res) => {
   }
 
   try {
-    const auth = await auth.authenticate(token);
+    const auth = authenticate(token);
     if (auth)
       res.json({
         success: true,
