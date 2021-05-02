@@ -35,13 +35,41 @@ router.post("/login", async (req, res) => {
       success: true,
       message: "You have successfully logged in.",
     });
-    
   } catch (err) {
     res.status(400);
     res.json({
       error: true,
       message: err.message,
     });
+  }
+});
+
+router.get("/auth", async (req, res) => {
+  const token = req.headers.cookie && req.headers.cookie.split("=")[1];
+
+  if (!token) {
+    res.status(400);
+    res.json({
+      error: true,
+      message: "You have been logged out. Please login to continue.",
+    });
+    res.end();
+  }
+
+  try {
+    const auth = await auth.authenticate(token);
+    if (auth)
+      res.json({
+        success: true,
+        data: auth.data,
+      });
+  } catch (error) {
+    res.status(400);
+    res.json({
+      error: true,
+      message: error.message,
+    });
+    res.end();
   }
 });
 
