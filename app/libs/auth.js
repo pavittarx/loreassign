@@ -9,7 +9,7 @@ export const login = async (username, password) => {
     const response = await axios.post(url, {
       username,
       password,
-    }, {withCredentials: true});
+    });
 
     console.log(response);
 
@@ -40,7 +40,7 @@ export const authenticate = async () => {
   const url = process.env.APP_REQUEST_ENDPOINT + "/api/auth";
 
   try {
-    const result = await axios.get(url, { withCredentials: true });
+    const result = await axios.get(url);
     console.log("==", response);
     if (response.success) return true;
   } catch (error) {
