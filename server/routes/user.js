@@ -26,15 +26,14 @@ router.post("/login", async (req, res) => {
   try {
     const token = await auth.authorize(usernameOrEmail, password);
 
-    res.cookie("token", token, {
-      maxAge: 72 * 60 * 60 * 1000,
-      httpOnly: true,
-    });
-
-    res.json({
-      success: true,
-      message: "You have successfully logged in.",
-    });
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+      })
+      .json({
+        success: true,
+        message: "You have successfully logged in.",
+      });
   } catch (err) {
     res.status(400);
     res.json({
@@ -54,6 +53,7 @@ router.get("/auth", async (req, res) => {
       message: "You have been logged out. Please login to continue.",
     });
     res.end();
+    return;
   }
 
   try {

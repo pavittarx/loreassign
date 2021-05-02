@@ -4,6 +4,7 @@
   "description": "task for applore assignment",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "prebuild": "run-s clean",
     "clean": "rimraf ./dist",
     "react-dev": "parcel app/index.html --port 3001",

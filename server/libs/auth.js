@@ -21,8 +21,6 @@ const authorize = async (usernameOrEmail, password) => {
 
   const user = await usersCollection.findOne(query);
 
-  console.log(password, user);
-
   if (!user)
     throw new Error(
       `The user with username: "${usernameOrEmail}" does not exist.`
