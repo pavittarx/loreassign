@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import Context from "./../context";
 
 import { Input, Button, Message } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
@@ -16,6 +17,8 @@ const Response = ({ success, error }) => {
 };
 
 export const LoginUI = () => {
+  const {setIsLoggedIn, setFormStatus} = useContext(Context);
+
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,7 +30,10 @@ export const LoginUI = () => {
     setError("");
     setMessage("");
     if (result.error) setError(result.message);
-    if (result.success) setMessage(result.message);
+    if (result.success) { 
+      setMessage(result.message);
+      setTimeout(() => setIsLoggedIn(true), 2000);
+    }
   };
 
   return (
@@ -53,13 +59,15 @@ export const LoginUI = () => {
 
       <Button primary content="Login" onClick={onLogin} />
       <div className="text">
-        Don't have an account? <a> Create One </a>
+        Don't have an account? <a onClick={() => setFormStatus(0)}> Create One </a>
       </div>
     </section>
   );
 };
 
 export const RegisterUI = () => {
+  const { setFormStatus } = useContext(Context);
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,7 +80,10 @@ export const RegisterUI = () => {
     setError("");
     setMessage("");
     if (response.error) setError(response.message);
-    if (response.success) setMessage(response.message);
+    if (response.success) {
+      setMessage(response.message);
+      setTimeout(() => setFormStatus(1), 2000);
+    }
   };
 
   return (
@@ -103,7 +114,7 @@ export const RegisterUI = () => {
       />
       <Button primary content="Create Account" onClick={onRegister} />
       <div className="text">
-        Already have an account? <a> Login </a>
+        Already have an account? <a onClick={() => setFormStatus(1)}> Login </a>
       </div>
     </section>
   );
