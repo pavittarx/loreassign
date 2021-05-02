@@ -16,9 +16,7 @@ const Order = ({ id, name, quantity, date, status }) => {
   // const [error, setError] = useState("");
 
   const remove = async () => {
-    console.log(id);
     const response = await deleteOrder(id);
-    console.log(response);
     if(response.error) setError(error);
   }
 

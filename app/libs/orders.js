@@ -46,8 +46,6 @@ export const editOrder = async (orderId, orderName, orderQuantity) => {
 export const deleteOrder = async (orderId) => {
   const token = window.localStorage.getItem("token");
 
-  console.log("=> ", orderId);
-
   try {
     const response = await authAxios(token).delete("/api/orders", {
       data: { orderId },

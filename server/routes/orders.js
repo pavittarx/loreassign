@@ -104,8 +104,6 @@ router.put("/", async (req, res) => {
 router.delete("", async (req, res) => {
   const { orderId } = req.body;
 
-  console.log(orderId);
-
   try {
     const deleteResult = await orders.deleteOrders(orderId);
     res.json({

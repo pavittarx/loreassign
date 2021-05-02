@@ -11,8 +11,6 @@ const checkIfUserExists = async (usernameOrEmail) => {
   const usersCollection = await Users();
   const user = await usersCollection.findOne(query);
 
-  console.log(user);
-
   if (user) return true;
   else return false;
 };

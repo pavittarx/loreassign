@@ -48,7 +48,6 @@ export const authenticate = async () => {
     
   } catch (error) {
     const { response } = error;
-    console.log(error, response);
     if (response.error) return false;
   }
 };
