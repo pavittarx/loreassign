@@ -42,8 +42,11 @@ export const authenticate = async () => {
   const url = "/api/auth";
   const token = window.localStorage.getItem("token");
 
+  if(!token) return false;
+
   try {
     const {data} = await authAxios(token).get(url);
+    console.log("->", data);
     if (data.success) return true;
     
   } catch (error) {

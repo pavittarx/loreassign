@@ -24,6 +24,7 @@ const App = () => {
 
   useEffect(async () => {
     const result = await authenticate();
+    console.log(result);
     setIsLoggedIn(result);
   }, [setIsLoggedIn]);
 
