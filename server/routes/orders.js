@@ -78,10 +78,11 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-  const { orderId, orderQuantity, orderStatus } = req.body;
+  const { orderId, orderName, orderQuantity, orderStatus } = req.body;
 
   // Avoid resetting values
   const update = {};
+  if (orderName) update["orderName"] = orderName;
   if (orderQuantity) update["orderQuantity"] = orderQuantity;
   if (orderStatus) update["orderStatus"] = orderStatus;
 
@@ -102,6 +103,8 @@ router.put("/", async (req, res) => {
 
 router.delete("", async (req, res) => {
   const { orderId } = req.body;
+
+  console.log(orderId);
 
   try {
     const deleteResult = await orders.deleteOrders(orderId);

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "semantic-ui-react";
 
 import Context from "./context";
-import { AddOrEditOrderModal } from "./orders/orders";
+import { OrderModal } from "./../components/index";
 
 import "semantic-ui-css/semantic.min.css";
 import "./app.scss";
@@ -46,7 +46,7 @@ export const LoggedInHeaderUI = () => {
     <section className="header">
       <Logo />
       <div className="right-block">
-        <AddOrEditOrderModal
+        <OrderModal
           open={open}
           setOpen={setOpen}
           trigger={<Button primary content="New Order" />}

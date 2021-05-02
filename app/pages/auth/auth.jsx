@@ -1,23 +1,15 @@
 import React, { useState, useContext } from "react";
 import Context from "./../context";
 
-import { Input, Button, Message } from "semantic-ui-react";
+import { Input, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./auth.scss";
 
 import { login, register } from "./../../libs/auth";
-
-const Response = ({ success, error }) => {
-  return (
-    <>
-      {success ? <Message positive> {success}</Message> : null}
-      {error ? <Message negative>{error}</Message> : null}
-    </>
-  );
-};
+import { Response } from "./../../components/index";
 
 export const LoginUI = () => {
-  const {setIsLoggedIn, setFormStatus} = useContext(Context);
+  const { setIsLoggedIn, setFormStatus } = useContext(Context);
 
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +22,7 @@ export const LoginUI = () => {
     setError("");
     setMessage("");
     if (result.error) setError(result.message);
-    if (result.success) { 
+    if (result.success) {
       setMessage(result.message);
       setTimeout(() => setIsLoggedIn(true), 2000);
     }
@@ -59,7 +51,8 @@ export const LoginUI = () => {
 
       <Button primary content="Login" onClick={onLogin} />
       <div className="text">
-        Don't have an account? <a onClick={() => setFormStatus(0)}> Create One </a>
+        Don't have an account?{" "}
+        <a onClick={() => setFormStatus(0)}> Create One </a>
       </div>
     </section>
   );

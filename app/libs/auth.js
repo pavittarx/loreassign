@@ -52,3 +52,5 @@ export const authenticate = async () => {
     if (response.error) return false;
   }
 };
+
+export default {login, register, authenticate};
