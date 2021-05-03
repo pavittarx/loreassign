@@ -1,3 +1,5 @@
+// Constant variables to maintain conformity
+
 const DB_NAME = "applore";
 const USERS_COLLECTION = "users";
 const ORDERS_COLLECTION = "orders";

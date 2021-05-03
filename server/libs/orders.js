@@ -19,6 +19,9 @@ const getOrders = async (username) => {
 };
 
 const addOrders = async (username, order) => {
+  if ((!order.orderName, !order.orderQuantity))
+    throw new Error("Order Name or Quantity missing.");
+
   const orderDoc = {
     username,
     orderName: order.orderName,
@@ -37,29 +40,38 @@ const addOrders = async (username, order) => {
 };
 
 const updateOrders = async (orderId, update) => {
-  if(!orderId) throw new Error("OrderId missing. Please provide a orderId");
+  if (!orderId) throw new Error("OrderId missing. Please provide a orderId");
 
   const ordersCollection = await Orders();
 
-  const status = await ordersCollection.updateOne({_id: mongo.ObjectID(orderId)}, {$set: update});
+  const status = await ordersCollection.updateOne(
+    { _id: mongo.ObjectID(orderId) },
+    { $set: update }
+  );
 
-  if(status.modifiedCount === 1) 
+  if (status.modifiedCount === 1)
     return "Your order has been updated successfully";
-  else 
-    throw new Error("An error occured while updating your order. Please try sometime later.");
+  else
+    throw new Error(
+      "An error occured while updating your order. Please try sometime later."
+    );
 };
 
 const deleteOrders = async (orderId) => {
-  if(!orderId) throw new Error("OrderId missing. Please provide a orderId");
+  if (!orderId) throw new Error("OrderId missing. Please provide a orderId");
 
   const ordersCollection = await Orders();
 
-  const deleteStatus = await ordersCollection.deleteOne({_id: mongo.ObjectID(orderId)});
+  const deleteStatus = await ordersCollection.deleteOne({
+    _id: mongo.ObjectID(orderId),
+  });
 
-  if(deleteStatus.deletedCount === 1) 
+  if (deleteStatus.deletedCount === 1)
     return "Your order has been deleted successfully";
-  else 
-    throw new Error("An error occured while deleting your order. Please try sometime later.");
+  else
+    throw new Error(
+      "An error occured while deleting your order. Please try sometime later."
+    );
 };
 
 module.exports = {
