@@ -19,7 +19,7 @@ const getOrders = async (username) => {
 };
 
 const addOrders = async (username, order) => {
-  if ((!order.orderName, !order.orderQuantity))
+  if ((!order.orderName && !order.orderQuantity))
     throw new Error("Order Name or Quantity missing.");
 
   const orderDoc = {
